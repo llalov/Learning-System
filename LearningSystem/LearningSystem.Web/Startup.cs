@@ -1,7 +1,9 @@
 ﻿namespace LearningSystem.Web
 {
+    using AutoMapper;
     using LearningSystem.Data;
     using LearningSystem.Data.Models;
+    using LearningSystem.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -29,7 +31,7 @@
                 .AddDefaultTokenProviders();
 
             // Add application services.
-         
+            services.AddAutoMapper();
 
             services.AddMvc();
         }
@@ -37,6 +39,8 @@
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseDatabaseMigration();
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
