@@ -2,11 +2,19 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using static DataConstants;
 
     public class Course
     {
+        public int Id { get; set; }
+
+        [Required]
+        [MaxLength(CourseNameMaxLength)]
         public string Name { get; set; }
 
+        [Required]
+        [MaxLength(CourseDescriptionMaxLenght)]
         public string Description { get; set; }
 
         public string TrainerId { get; set; }

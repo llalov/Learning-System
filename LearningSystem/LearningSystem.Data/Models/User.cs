@@ -4,13 +4,13 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using static DataConstants;
 
     public class User : IdentityUser
     {
         [Required]
-        public string Username { get; set; }
-
-        [Required]
+        [MaxLength(UserNameMaxLength)]
+        [MinLength(UserNameMinLength)]
         public string Name { get; set; }
 
         public DateTime BirthDate { get; set; }
