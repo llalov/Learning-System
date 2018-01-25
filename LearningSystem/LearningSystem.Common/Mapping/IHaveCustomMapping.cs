@@ -1,4 +1,4 @@
-﻿namespace LearningSystem.Web.Infrastructure.Mapping
+﻿namespace LearningSystem.Common.Mapping
 {
     using AutoMapper;
 

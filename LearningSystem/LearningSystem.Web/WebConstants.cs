@@ -8,5 +8,8 @@
 
         public const string AdministratorEmail = "admin@mysite.com";
         public const string AdministratorPassword = "admin12";
+
+        public const string TempDataSuccessMessageKey = "SuccessMessage";
+
     }
 }

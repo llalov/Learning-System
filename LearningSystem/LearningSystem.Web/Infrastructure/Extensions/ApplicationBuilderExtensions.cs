@@ -1,4 +1,4 @@
-﻿namespace LearningSystem.Web.Infrastructure.Extensions
+﻿ namespace LearningSystem.Web.Infrastructure.Extensions
 {
     using static WebConstants;
     using LearningSystem.Data;
@@ -54,7 +54,7 @@
                                     BirthDate = DateTime.UtcNow
                                 };
 
-                                await userManager.CreateAsync(adminUser);
+                                await userManager.CreateAsync(adminUser, AdministratorPassword);
                                 await userManager.AddToRoleAsync(adminUser, AdministratorRole);
                             }
                         }

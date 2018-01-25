@@ -1,9 +1,19 @@
 ﻿namespace LearningSystem.Web.Models.AccountViewModels
 {
+    using static Data.DataConstants;
     using System.ComponentModel.DataAnnotations;
+    using System;
 
     public class RegisterViewModel
     {
+        [Required]
+        [StringLength(50, MinimumLength = 2)]
+        public string Username { get; set; }
+        
+        [Required]
+        [StringLength(UserNameMaxLength, MinimumLength = UserNameMinLength)]
+        public string Name { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -19,5 +29,8 @@
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime Birthdate { get; set; }
     }
 }

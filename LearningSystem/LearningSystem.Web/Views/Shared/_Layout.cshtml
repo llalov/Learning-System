@@ -30,6 +30,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                   @if (User.IsInRole(WebConstants.AdministratorRole))
+                    {
+                     <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Administration
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a asp-area="Admin" asp-controller="Users" asp-action="Index">Users</a></li>
+                            <li><a asp-area="Admin" asp-controller="Courses" asp-action="Create">Create Course</a></li>
+                        </ul>
+                     </li>
+                    }
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
@@ -37,6 +49,13 @@
         </div>
     </nav>
     <div class="container body-content">
+        @if (TempData.ContainsKey(WebConstants.TempDataSuccessMessageKey))
+        {
+            <div class="alert alert-success">
+                @TempData[WebConstants.TempDataSuccessMessageKey]
+            </div>
+        }
+
         @RenderBody()
         <hr />
         <footer>

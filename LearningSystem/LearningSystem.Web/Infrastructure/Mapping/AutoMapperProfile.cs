@@ -3,6 +3,7 @@
     using AutoMapper;
     using System;
     using System.Linq;
+    using LearningSystem.Common.Mapping;
 
     public class AutoMapperProfile : Profile
     {
