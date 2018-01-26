@@ -42,6 +42,17 @@
                         </ul>
                      </li>
                     }
+                   @if (User.IsInRole(WebConstants.BlogAuthorRole))
+                    {
+                     <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Blog Administration
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a asp-area="Blog" asp-controller="Articles" asp-action="Create">Create Article</a></li>
+                        </ul>
+                     </li>
+                    }
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
