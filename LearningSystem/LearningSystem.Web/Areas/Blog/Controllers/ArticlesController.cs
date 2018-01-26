@@ -9,17 +9,24 @@
     using System.Threading.Tasks;
     using Models.Articles;
     using static WebConstants;
+    using LearningSystem.Services.Blog.Interfaces;
 
     [Authorize(Roles = BlogAuthorRole)]
     [Area("Blog")]
     public class ArticlesController : Controller
     {
         private readonly UserManager<User> UserManager;
+        private readonly IBlogArticleService Articles;
 
-        public ArticlesController(UserManager<User> userManager)
+        public ArticlesController(UserManager<User> userManager, IBlogArticleService articles)
         {
             this.UserManager = userManager;
+            this.Articles = articles;
         }
+
+        [AllowAnonymous]
+        public IActionResult Index()
+            => View();
 
         public IActionResult Create()
             => View();
@@ -28,8 +35,11 @@
         [HttpPost]
         public async Task<IActionResult> Create(BlogCreateArticleFormModel model)
         {
+            var userId = this.UserManager.GetUserId(User);
 
-            throw new System.Exception("awdadawdaw");
+            await this.Articles.CreateAsync(model.Title, model.Content, userId);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

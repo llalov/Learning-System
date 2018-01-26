@@ -15,8 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Blog\Interfaces\" />
-    <Folder Include="Blog\Implementations\" />
     <Folder Include="Blog\Models\" />
   </ItemGroup>
 
