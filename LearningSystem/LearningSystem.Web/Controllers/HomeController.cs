@@ -1,16 +1,23 @@
 ﻿namespace LearningSystem.Web.Controllers
 {
+    using LearningSystem.Services.Interfaces;
     using LearningSystem.Web.Models;
     using Microsoft.AspNetCore.Mvc;
     using System.Diagnostics;
+    using System.Threading.Tasks;
 
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly ICourseService Courses;
+
+        public HomeController(ICourseService courses)
         {
-            return View();
+            this.Courses = courses;
         }
 
+        public async Task<IActionResult> Index()
+            => View(await this.Courses.AllActiveAsync());
+        
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

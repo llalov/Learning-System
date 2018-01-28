@@ -30,30 +30,30 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                   @if (User.IsInRole(WebConstants.AdministratorRole))
-                    {
-                     <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @if (User.IsInRole(WebConstants.AdministratorRole))
+    {
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Administration
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a asp-area="Admin" asp-controller="Users" asp-action="Index">Users</a></li>
-                            <li><a asp-area="Admin" asp-controller="Courses" asp-action="Create">Create Course</a></li>
-                        </ul>
-                     </li>
-                    }
-                   @if (User.IsInRole(WebConstants.BlogAuthorRole))
-                    {
-                     <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a asp-area="Admin" asp-controller="Users" asp-action="Index">Users</a></li>
+                        <li><a asp-area="Admin" asp-controller="Courses" asp-action="Create">Create Course</a></li>
+                    </ul>
+                </li>
+}
+                    @if (User.IsInRole(WebConstants.BlogAuthorRole))
+    {
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Blog Administration
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a asp-area="Blog" asp-controller="Articles" asp-action="Create">Create Article</a></li>
-                        </ul>
-                     </li>
-                    }
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a asp-area="Blog" asp-controller="Articles" asp-action="Create">Create Article</a></li>
+                    </ul>
+                </li>
+}
+                    <li><a asp-area="Blog" asp-controller="Articles" asp-action="Index">Blog</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

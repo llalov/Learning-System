@@ -11,7 +11,7 @@
     using static WebConstants;
     using LearningSystem.Services.Blog.Interfaces;
 
-    [Authorize(Roles = BlogAuthorRole)]
+    
     [Area("Blog")]
     public class ArticlesController : Controller
     {
@@ -24,15 +24,30 @@
             this.Articles = articles;
         }
 
-        [AllowAnonymous]
-        public IActionResult Index()
-            => View();
+        [Authorize]
+        public async Task<IActionResult> Index(int page = 1)
+            => View(new ArticleListingViewModel
+                {
+                    Articles = await this.Articles.AllAsync(page),
+                    TotalArticles = await this.Articles.TotalCountAsync(),
+                    CurrentPage = page 
+                });
 
+        [Authorize]
+        public async Task<IActionResult> Details (int id)
+        {
+            if (!await this.Articles.Exists(id))
+                return NotFound();
+            
+            return  View(await this.Articles.Details(id));
+        }
+                
+        [Authorize(Roles = BlogAuthorRole)]
         public IActionResult Create()
             => View();
         
-        
         [HttpPost]
+        [Authorize(Roles = BlogAuthorRole)]
         public async Task<IActionResult> Create(BlogCreateArticleFormModel model)
         {
             var userId = this.UserManager.GetUserId(User);
