@@ -5,7 +5,7 @@
 }
 
 <div class="jumbotron">
-    <h1>Welcome to our learning system!</h1>
+    <h1 class="text-center">Welcome to our learning system!</h1>
 </div>
 
 <div class="container">
@@ -13,13 +13,16 @@
         @foreach (var course in Model)
         {
         <div class="col-md-3" style="display:inline-block;">
-            <h3>@course.Name</h3>
+            <div style="height: 6rem">
+                <h3 style="vertical-align:central">@course.Name</h3>
+            </div>
+            
             <p>
                 Start: <b>@course.StartDate.ToShortDateString()</b>
                 <br/>
                 End: <b>@course.EndDate.ToShortDateString()</b>
             </p>
-            <a href="#">Details</a>
+            <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">Details</a>
         </div>
         }
     </div>

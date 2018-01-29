@@ -1,0 +1,51 @@
+﻿@model CourseDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-center"><b>@Model.Course.Name</b></h1>
+<h4 class="text-center">@Model.Course.StartDate.ToString("d MMMM, yyyy") - @Model.Course.EndDate.ToString("d MMMM, yyyy") </h4>
+<h5 class="text-center"><b>Signed:</b> @Model.Course.StudentsCount</h5>
+<h5 class="text-center"><b>Trainer:</b> @Model.Course.Trainer</h5><br />
+<h3 class="text-center">About the course</h3>
+<p class="text-center">@Model.Course.Description</p>
+
+@if (Model.IsUserSignedInCouse != null && Model.IsUserSignedInCouse == false)
+{
+    if (Model.Course.StartDate > DateTime.UtcNow)
+    {
+        <br />
+        <br />
+        <div class="row text-center">
+            <form asp-action="SignUp" asp-route-id="@Model.Course.Id" method="post">
+                <input type="submit" class="btn btn-success" value="Sign Up" />
+            </form>
+            
+        </div>
+    }
+}
+else if (Model.IsUserSignedInCouse != null && Model.IsUserSignedInCouse == true)
+{
+    if (Model.Course.StartDate > DateTime.UtcNow)
+    {
+        <br />
+        <br />
+        <div class="row text-center">
+            <form asp-action="SignOut" asp-route-id="@Model.Course.Id" method="post">
+                <input type="submit" class="btn btn-warning" value="Sign Out" />
+            </form>
+        </div>
+    }
+}
+else
+{
+    <br />
+    <br />
+    <div class="row text-center">
+        <span class="text-center">To sign in to this course please <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">login</a> to your account.</span>
+    </div>
+}
+
+
+
