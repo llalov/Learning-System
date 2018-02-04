@@ -30,7 +30,7 @@
             {
                 <tr>
                     <td>
-                        @course.Name
+                        <a asp-area="" asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">@course.Name</a>
                     </td>
                     <td>
                         @(course.Grade == null ? "No Grade" : course.Grade.ToString())

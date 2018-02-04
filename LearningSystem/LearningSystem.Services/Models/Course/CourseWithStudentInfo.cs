@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LearningSystem.Services.Models
+﻿namespace LearningSystem.Services.Models.Course
 {
+    using System;
+
     public class CourseWithStudentInfo
     {
         public DateTime StartDate { get; set; }

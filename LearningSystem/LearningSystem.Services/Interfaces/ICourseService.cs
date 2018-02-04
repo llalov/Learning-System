@@ -1,6 +1,6 @@
 ﻿namespace LearningSystem.Services.Interfaces
 {
-    using Models;
+    using Models.Course;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 

@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using Interfaces;
     using LearningSystem.Data;
-    using LearningSystem.Services.Models;
+    using LearningSystem.Services.Models.Course;
     using System.Linq;
     using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;

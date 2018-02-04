@@ -22,9 +22,7 @@
             var user = await UserManager.FindByNameAsync(username);
 
             if (user == null)
-            {
                 return NotFound();
-            }
 
             var profile = await UserService.GetUserProfileAsync(user.Id);
 

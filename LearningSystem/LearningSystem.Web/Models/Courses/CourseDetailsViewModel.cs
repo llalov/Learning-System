@@ -1,6 +1,6 @@
 ﻿namespace LearningSystem.Web.Models.Courses
 {
-    using Services.Models;
+    using Services.Models.Course;
 
     public class CourseDetailsViewModel
     {

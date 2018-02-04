@@ -1,0 +1,45 @@
+﻿@model IEnumerable<StudentInCourseServiceModel>
+
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<h2>Students</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Grade
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>
+                    @student.Name
+                </td>
+                <td>
+                    @student.Email
+                </td>
+                <td>
+                    @(student.Grade == null ? "No Grade" : student.Grade.ToString())
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
