@@ -2,6 +2,7 @@
 {
     using LearningSystem.Data.Models;
     using LearningSystem.Services.Interfaces;
+    using LearningSystem.Services.Models.Course;
     using LearningSystem.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -27,7 +28,7 @@
             
             var model = new CourseDetailsViewModel
             {
-                Course = await this.Courses.DetailsAsync(id)
+                Course = await this.Courses.DetailsAsync<CourseDetailsServiceModel>(id)
             };
 
             if (User.Identity.IsAuthenticated)

@@ -1,11 +1,12 @@
-﻿@model IEnumerable<StudentInCourseServiceModel>
+﻿@model StudentsInClassViewModel
 
 
 @{
-    ViewData["Title"] = "Students";
+    ViewData["Title"] = $"Students in course <b>{Model.Course.Name}<b/>";
 }
 
-<h2>Students</h2>
+<h2>@Html.Raw(ViewData["Title"])</h2>
+<br/>
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -19,25 +20,42 @@
             <th>
                 Grade
             </th>
+            @if (Model.Course.EndDate < DateTime.UtcNow)
+            {
+              <th>
+              </th>
+            }         
         </tr>
 
     </thead>
     <tbody>
-        @foreach (var student in Model)
+        @foreach (var student in Model.Students)
         {
             <tr>
-                <td>
-                    @student.Name
+                <td class="col-md-2">
+                    <a asp-area="" asp-controller="Users" asp-action="Profile" asp-route-username="@student.Username">@student.Name</a>
                 </td>
-                <td>
+                <td class="col-md-2">
                     @student.Email
                 </td>
-                <td>
+                <td class="col-md-1">
                     @(student.Grade == null ? "No Grade" : student.Grade.ToString())
                 </td>
-                <td>
-
-                </td>
+                @if (Model.Course.EndDate < DateTime.UtcNow)
+                {
+                  <td class="col-md-1">
+                      <form asp-action="GradeStudent" asp-route-courseId="@Model.Course.Id" method="post">
+                          <input type="hidden" name="studentId" value="@student.Id" />
+                          <div style="display: inline-block">
+                              <select name="grade" asp-items="@Html.GetEnumSelectList<Grade>()" style="margin-bottom: 5px;" class="form-control input-sm"></select>
+                          </div>
+                          <div style="display: inline-block">
+                              <input type="submit" value="Add Grade" class="btn btn-primary btn-sm" />
+                          </div>
+                          
+                      </form>
+                  </td>
+                }  
             </tr>
         }
     </tbody>

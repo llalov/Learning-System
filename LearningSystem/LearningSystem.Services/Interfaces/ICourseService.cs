@@ -8,7 +8,9 @@
     {
         Task<IEnumerable<CourseListingServiceModel>> AllActiveAsync();
 
-        Task<CourseDetailsServiceModel> DetailsAsync(int id);
+        Task<IEnumerable<CourseListingServiceModel>> FindCoursesAsync(string searchText);
+
+        Task<TModel> DetailsAsync<TModel>(int id) where TModel : class;
 
         Task<bool> Exist(int id);
 

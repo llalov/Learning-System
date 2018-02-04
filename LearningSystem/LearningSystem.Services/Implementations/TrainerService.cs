@@ -9,6 +9,7 @@
     using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
     using LearningSystem.Services.Models;
+    using LearningSystem.Data.Models;
 
     public class TrainerService : ITrainerService
     {
@@ -38,5 +39,17 @@
                 .SelectMany(c => c.Students.Select(s => s.Student))
                 .ProjectTo<StudentInCourseServiceModel>(new { courseId })
                 .ToListAsync();
+
+        public async Task<bool> AddStudentGrade(string studentId, int courseId, Grade grade)
+        {
+            var studentInCourse = await this.Db.FindAsync<StudentCourse>(studentId, courseId);
+
+            if (studentInCourse == null)
+                return false;
+  
+            studentInCourse.Grade = grade;
+            await this.Db.SaveChangesAsync();
+            return true;
+        }
     }
 }

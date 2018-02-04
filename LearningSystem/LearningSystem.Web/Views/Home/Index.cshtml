@@ -1,8 +1,28 @@
-﻿@model IEnumerable<CourseListingServiceModel>
+﻿@model HomeIndexViewModel
 
 @{
     ViewData["Title"] = "Active Courses";
 }
+
+<div class="row" style="margin-top:3rem;">
+    <form asp-action="Search">
+        <div class="col-md-6">
+            <input asp-for="SearchText" class="form-control" placeholder="Search..." />
+        </div>
+        <div class="col-md-2">
+            <label asp-for="SearchInCourses"></label>
+            <input asp-for="SearchInCourses" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for="SearchInUsers"></label>
+            <input asp-for="SearchInUsers" />
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
+    </form>
+</div>
+<br />
 
 <div class="jumbotron">
     <h1 class="text-center">Welcome to our learning system!</h1>
@@ -10,20 +30,7 @@
 
 <div class="container">
     <div class="row">
-        @foreach (var course in Model)
-        {
-        <div class="col-md-3" style="display:inline-block;">
-            <div style="height: 6rem">
-                <h3 style="vertical-align:central">@course.Name</h3>
-            </div>
-            
-            <p>
-                Start: <b>@course.StartDate.ToShortDateString()</b>
-                <br/>
-                End: <b>@course.EndDate.ToShortDateString()</b>
-            </p>
-            <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">Details</a>
-        </div>
-        }
+        @await Html.PartialAsync("_CourseListingPartial", Model.Courses)
     </div>
 </div>
+    

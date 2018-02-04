@@ -1,0 +1,18 @@
+﻿@model IEnumerable<CourseListingServiceModel>
+
+
+        @foreach (var course in Model)
+        {
+            <div class="col-md-3" style="display:inline-block;">
+                <div style="height: 6rem">
+                    <h3 style="vertical-align:central">@course.Name</h3>
+                </div>
+
+                <p>
+                    Start: <b>@course.StartDate.ToShortDateString()</b>
+                    <br />
+                    End: <b>@course.EndDate.ToShortDateString()</b>
+                </p>
+                <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">Details</a>
+            </div>
+        }

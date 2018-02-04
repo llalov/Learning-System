@@ -1,15 +1,15 @@
 ﻿namespace LearningSystem.Services.Implementations
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using AutoMapper.QueryableExtensions;
+    using Data.Models;
     using Interfaces;
     using LearningSystem.Data;
     using LearningSystem.Services.Models.Course;
-    using System.Linq;
-    using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
     using System;
-    using Data.Models;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class CourseService : ICourseService
     {
@@ -28,11 +28,11 @@
                 .ProjectTo<CourseListingServiceModel>()
                 .ToListAsync();
 
-        public async Task<CourseDetailsServiceModel> DetailsAsync(int id)
+        public async Task<TModel> DetailsAsync<TModel>(int id) where TModel : class
             => await this.Db
                 .Courses
                 .Where(c => c.Id == id)
-                .ProjectTo<CourseDetailsServiceModel>()
+                .ProjectTo<TModel>()
                 .FirstOrDefaultAsync();
 
         public async Task<bool> Exist(int id)
@@ -91,5 +91,17 @@
                         UserIsEnrolled = c.Students.Any(s => s.StudentId == userId)
                     })
                     .FirstOrDefaultAsync();
+
+        public async Task<IEnumerable<CourseListingServiceModel>> FindCoursesAsync(string searchText)
+        {
+            var SearchText = searchText ?? string.Empty;
+
+            return await this.Db
+                        .Courses
+                        .OrderByDescending(c => c.Id)
+                        .Where(c => c.Name.ToLower().Contains(SearchText.ToLower()))
+                        .ProjectTo<CourseListingServiceModel>()
+                        .ToListAsync();
+        }
     }
 }
