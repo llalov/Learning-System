@@ -33,3 +33,18 @@
         display: none;
     }
 }
+
+
+.fa {
+    text-align: center;
+    margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}

@@ -11,7 +11,7 @@
         [Required]
         [MaxLength(UserNameMaxLength)]
         [MinLength(UserNameMinLength)]
-        public string Name { get; set; }
+        public string Name { get; set; } = "User";
 
         public DateTime BirthDate { get; set; }
 

@@ -36,6 +36,12 @@
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = "2078143062421530";
+                facebookOptions.AppSecret = "4188f9445d11f0a13e69bdc9e43e858b";
+            });
+
             services.AddAutoMapper();
 
             services.AddDomainServices();

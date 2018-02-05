@@ -10,6 +10,10 @@ namespace LearningSystem.Web.Models.ManageViewModels
     {
         public string Username { get; set; }
 
+        public string Name { get; set; }
+
+        public DateTime BirthDate { get; set; }
+
         public bool IsEmailConfirmed { get; set; }
 
         [Required]
