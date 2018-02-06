@@ -46,6 +46,7 @@
                 .HasForeignKey(t => t.TrainerId);
 
             base.OnModelCreating(builder);
+
         }
     }
 }
