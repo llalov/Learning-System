@@ -21,12 +21,6 @@ Learning System is a web-based application designed for managing courses, studen
 - Content management (lessons, assignments, quizzes)
 - Database integration with Entity Framework Core
 
-## Installation & Setup
-### Prerequisites
-- .NET 6 or later
-- MS SQL Server
-- Node.js (if frontend dependencies are managed)
-
 ### Steps to Run the Project
 1. Clone the repository:
    ```sh
